@@ -67,7 +67,7 @@ export default {
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
-    signInTitle: 'AntAdmin营销系统 - 商家端',
+    signInTitle: '绿爱综合管理平台系统',
     signInDesc: '简单、方便、可靠！',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,

@@ -11,10 +11,6 @@ export const columns: BasicColumn[] = [
     dataIndex: 'roleName',
   },
   {
-    title: '角色值',
-    dataIndex: 'label',
-  },
-  {
     title: '状态',
     dataIndex: 'status',
     customRender: ({ record }) => {
@@ -85,13 +81,6 @@ export const formSchema: FormSchema[] = [
   {
     field: 'roleName',
     label: '角色名称',
-    required: true,
-    component: 'Input',
-    colProps: { span: 12 },
-  },
-  {
-    field: 'label',
-    label: '角色值',
     required: true,
     component: 'Input',
     colProps: { span: 12 },

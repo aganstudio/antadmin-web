@@ -131,12 +131,6 @@ export const menuTypeList = [
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.MIX,
   },
-
-  {
-    title: t('layout.setting.menuTypeTopMenu'),
-    mode: MenuModeEnum.HORIZONTAL,
-    type: MenuTypeEnum.TOP_MENU,
-  },
   {
     title: t('layout.setting.menuTypeMixSidebar'),
     mode: MenuModeEnum.INLINE,

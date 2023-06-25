@@ -21,6 +21,7 @@
       :rowClassName="getRowClassName"
       v-show="getEmptyDataIsShowTable"
       @change="handleTableChange"
+      @resize-column="resizeColumn"
     >
       <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
@@ -320,6 +321,7 @@
         expandRows,
         collapseAll,
         scrollTo,
+
         getSize: () => {
           return unref(getBindValues).size as SizeType;
         },
@@ -330,6 +332,9 @@
 
       emit('register', tableAction, formActions);
 
+      const resizeColumn = (w, col) => {
+        setCacheColumnsByField(col.dataIndex, { width: w });
+      };
       return {
         formRef,
         tableElRef,
@@ -348,6 +353,7 @@
         getFormSlotKeys,
         getWrapperClass,
         columns: getViewColumns,
+        resizeColumn,
       };
     },
   });

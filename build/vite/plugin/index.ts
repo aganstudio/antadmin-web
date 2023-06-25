@@ -8,7 +8,7 @@ import { configMockPlugin } from './mock';
 import { configCompressPlugin } from './compress';
 import { configVisualizerConfig } from './visualizer';
 import { configSvgIconsPlugin } from './svgSprite';
-
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 export async function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
 
@@ -17,6 +17,8 @@ export async function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vue(),
     // have to
     vueJsx(),
+
+    vueSetupExtend(),
   ];
 
   // vite-plugin-windicss

@@ -13,7 +13,7 @@
         <BasicTree
           v-model:value="model[field]"
           :treeData="treeData"
-          :fieldNames="{ title: 'name', key: 'id' }"
+          :fieldNames="{ title: 'title', key: 'id' }"
           checkable
           toolbar
           search
@@ -66,6 +66,8 @@
             ...data.record,
             menu: menuArr,
           });
+        } else {
+          rowId.value = 0;
         }
       });
 

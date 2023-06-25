@@ -36,7 +36,6 @@ export default defineComponent({
   name: 'SettingDrawer',
   setup(_, { attrs }) {
     const {
-      getShowFooter,
       getGrayMode,
       getLockTime,
       // getThemeColor,
@@ -160,20 +159,6 @@ export default defineComponent({
             event={HandlerEnum.TABS_SHOW}
             def={unref(getShowMultipleTab)}
           />
-
-          <SwitchItem
-            title={t('layout.setting.sidebar')}
-            event={HandlerEnum.MENU_SHOW_SIDEBAR}
-            def={unref(getShowMenu)}
-            disabled={unref(getIsHorizontal)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.footer')}
-            event={HandlerEnum.SHOW_FOOTER}
-            def={unref(getShowFooter)}
-          />
-
           <SwitchItem
             title={t('layout.setting.grayMode')}
             event={HandlerEnum.GRAY_MODE}

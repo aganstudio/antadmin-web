@@ -70,6 +70,7 @@
 
     &__overlay {
       max-width: 360px;
+      min-width: 280px;
     }
 
     .ant-tabs-content {

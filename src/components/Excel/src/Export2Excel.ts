@@ -1,3 +1,4 @@
+import { isUnDef } from '/@/utils/is';
 import * as xlsx from 'xlsx';
 import type { WorkBook } from 'xlsx';
 import type { JsonToSheet, AoAToSheet } from './typing';
@@ -18,14 +19,18 @@ function setColumnWidth(data, worksheet, min = 3) {
   worksheet['!cols'] = [];
   data.forEach((item) => {
     Object.keys(item).forEach((key) => {
-      const cur = item[key];
-      const length = cur?.length ?? min;
-      obj[key] = Math.max(length, obj[key] ?? min);
+      if (isUnDef(obj[key])) {
+        obj[key] = min;
+        // console.log(obj[key]);
+      } else if (item[key].length > obj[key]) {
+        obj[key] = item[key].length;
+      }
     });
   });
+  // console.log(obj);
   Object.keys(obj).forEach((key) => {
     worksheet['!cols'].push({
-      wch: obj[key],
+      wch: obj[key] * 2 + 2,
     });
   });
 }
@@ -43,9 +48,59 @@ export function jsonToSheetXlsx<T = any>({
     arrData.unshift(header);
     json2sheetOpts.skipHeader = true;
   }
-
   const worksheet = utils.json_to_sheet(arrData, json2sheetOpts);
   setColumnWidth(arrData, worksheet);
+  // console.log(worksheet);
+  // for (const key in worksheet) {
+  //   if (key == '!ref' || key == '!cols') {
+  //     continue;
+  //   }
+  //   // 第一行
+  //   // console.log(key, sheet[key])
+  //   if (key.replace(/[^0-9]/gi, '') === '1') {
+  //     worksheet[key].s = {
+  //       fill: {
+  //         fgColor: { rgb: 'FFA3F4B1' }, // 添加背景色
+  //       },
+  //       font: {
+  //         name: '宋体', // 字体
+  //         sz: 11,
+  //         bold: true,
+  //       },
+  //       border: {
+  //         top: {
+  //           style: 'thin',
+  //           color: '000',
+  //         },
+  //         bottom: {
+  //           style: 'thin',
+  //           color: '000',
+  //         },
+  //         right: {
+  //           style: 'thin',
+  //           color: '000',
+  //         },
+  //       },
+  //     };
+  //   } else {
+  //     worksheet[key].s = {
+  //       font: {
+  //         name: '宋体', // 字体
+  //         sz: 10,
+  //       },
+  //       border: {
+  //         bottom: {
+  //           style: 'thin',
+  //           color: '000',
+  //         },
+  //         right: {
+  //           style: 'thin',
+  //           color: '000',
+  //         },
+  //       },
+  //     };
+  //   }
+  // }
   /* add worksheet to workbook */
   const workbook: WorkBook = {
     SheetNames: [sheetName],
